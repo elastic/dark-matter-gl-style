@@ -1771,7 +1771,7 @@
       ],
       "layout": {
         "visibility": "visible",
-        "text-field": "{name:latin}",
+        "text-field": "{name_en}",
         "text-font": [
           "Metropolis Light Italic",
           "Noto Sans Italic"
@@ -1830,7 +1830,7 @@
       ],
       "layout": {
         "visibility": "visible",
-        "text-field": "{name:latin}",
+        "text-field": "{name_en}",
         "text-font": [
           "Metropolis Regular",
           "Noto Sans Regular"
@@ -1889,7 +1889,7 @@
       ],
       "layout": {
         "visibility": "visible",
-        "text-field": "{name:latin}",
+        "text-field": "{name_en}",
         "text-font": [
           "Metropolis Regular",
           "Noto Sans Regular"
