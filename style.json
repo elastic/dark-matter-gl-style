@@ -619,12 +619,7 @@
       "metadata": {"mapbox:group": "a14c9607bc7954ba1df7205bf660433f"},
       "source": "openmaptiles",
       "source-layer": "boundary",
-      "filter": [
-        "all",
-        ["==", "admin_level", 2],
-        ["!=", "maritime", 1],
-        ["!=", "disputed", 1]
-      ],
+      "filter": ["all", ["==", "admin_level", 2], ["!=", "maritime", 1]],
       "layout": {"line-cap": "round", "line-join": "round"},
       "paint": {
         "line-color": "rgb(83, 89, 102)",
