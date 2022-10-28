@@ -754,7 +754,6 @@
       "layout": {
         "text-size": 10,
         "icon-image": {"base": 1, "stops": [[0, "circle-11"], [9, ""]]},
-        "text-transform": "uppercase",
         "text-font": ["Metropolis Regular", "Noto Sans Regular"],
         "text-justify": "left",
         "visibility": "visible",
@@ -787,7 +786,6 @@
       "layout": {
         "text-size": 14,
         "icon-image": {"base": 1, "stops": [[0, "circle-11"], [9, ""]]},
-        "text-transform": "uppercase",
         "text-font": ["Metropolis Regular", "Noto Sans Regular"],
         "text-justify": "left",
         "visibility": "visible",
@@ -838,7 +836,7 @@
       "metadata": {"mapbox:group": "101da9f13b64a08fa4b6ac1168e89e5f"},
       "source": "openmaptiles",
       "source-layer": "place",
-      "minzoom": 3,
+      "minzoom": 2,
       "maxzoom": 12,
       "filter": ["all", ["in", "class", "state"], ["<=", "rank", 3]],
       "layout": {
