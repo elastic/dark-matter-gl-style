@@ -3,21 +3,18 @@
   "name": "Dark Matter",
   "metadata": {
     "mapbox:autocomposite": false,
+    "mapbox:type": "template",
     "mapbox:groups": {
-      "101da9f13b64a08fa4b6ac1168e89e5f": {
-        "collapsed": false,
-        "name": "Places"
+      "b6371a3f2f5a9932464fa3867530a2e5": {
+        "name": "Transportation",
+        "collapsed": false
       },
       "a14c9607bc7954ba1df7205bf660433f": {"name": "Boundaries"},
-      "b6371a3f2f5a9932464fa3867530a2e5": {
-        "collapsed": false,
-        "name": "Transportation"
-      }
+      "101da9f13b64a08fa4b6ac1168e89e5f": {"name": "Places", "collapsed": false}
     },
-    "mapbox:type": "template",
+    "openmaptiles:version": "3.x",
     "openmaptiles:mapbox:owner": "openmaptiles",
     "openmaptiles:mapbox:source:url": "mapbox://openmaptiles.4qljc88t",
-    "openmaptiles:version": "3.x",
     "maputnik:renderer": "mbgljs"
   },
   "sources": {
@@ -39,11 +36,7 @@
       "type": "fill",
       "source": "openmaptiles",
       "source-layer": "water",
-      "filter": [
-        "all",
-        ["==", "$type", "Polygon"],
-        ["!=", "brunnel", "tunnel"]
-      ],
+      "filter": ["==", "$type", "Polygon"],
       "layout": {"visibility": "visible"},
       "paint": {"fill-color": "rgb(34, 34, 32)", "fill-antialias": false}
     },
@@ -132,11 +125,11 @@
       "source-layer": "water_name",
       "filter": ["==", "$type", "LineString"],
       "layout": {
-        "symbol-placement": "line",
-        "symbol-spacing": 500,
         "text-field": "{name:latin}\n{name:nonlatin}",
-        "text-font": ["Metropolis Medium Italic", "Noto Sans Italic"],
+        "symbol-placement": "line",
         "text-rotation-alignment": "map",
+        "symbol-spacing": 500,
+        "text-font": ["Metropolis Medium Italic", "Noto Sans Italic"],
         "text-size": 12
       },
       "paint": {"text-color": "rgb(152, 162, 179)"}
@@ -267,8 +260,9 @@
       },
       "paint": {
         "line-color": "rgb(34, 34, 32)",
+        "line-width": {"base": 1.2, "stops": [[13, 1], [20, 10]]},
         "line-opacity": 0.9,
-        "line-width": {"base": 1.2, "stops": [[13, 1], [20, 10]]}
+        "line-dasharray": [1.5, 1.5]
       }
     },
     {
@@ -460,7 +454,7 @@
         ["==", "$type", "LineString"],
         ["all", ["==", "class", "transit"], ["!in", "brunnel", "tunnel"]]
       ],
-      "layout": {"line-join": "round", "visibility": "visible"},
+      "layout": {"visibility": "visible", "line-join": "round"},
       "paint": {
         "line-color": "rgb(22, 26, 28)",
         "line-width": 2,
@@ -494,7 +488,7 @@
         ["==", "$type", "LineString"],
         ["all", ["==", "class", "rail"], ["has", "service"]]
       ],
-      "layout": {"line-join": "round", "visibility": "visible"},
+      "layout": {"visibility": "visible", "line-join": "round"},
       "paint": {
         "line-color": "rgb(22, 26, 28)",
         "line-width": 2,
@@ -514,7 +508,7 @@
         ["==", "class", "rail"],
         ["!has", "service"]
       ],
-      "layout": {"line-join": "round", "visibility": "visible"},
+      "layout": {"visibility": "visible", "line-join": "round"},
       "paint": {
         "line-width": {"base": 1.3, "stops": [[16, 3], [20, 7]]},
         "line-color": "rgb(83, 89, 102)"
@@ -533,7 +527,7 @@
         ["==", "class", "rail"],
         ["!has", "service"]
       ],
-      "layout": {"line-join": "round", "visibility": "visible"},
+      "layout": {"visibility": "visible", "line-join": "round"},
       "paint": {
         "line-color": "rgb(22, 26, 28)",
         "line-width": {"base": 1.3, "stops": [[16, 2], [20, 6]]},
@@ -552,16 +546,16 @@
         ["==", "$type", "LineString"]
       ],
       "layout": {
-        "symbol-placement": "line",
-        "symbol-spacing": 350,
-        "text-field": "{name:latin} {name:nonlatin}",
-        "text-font": ["Metropolis Regular", "Noto Sans Regular"],
-        "text-max-angle": 30,
-        "text-pitch-alignment": "viewport",
-        "text-rotation-alignment": "map",
         "text-size": 10,
+        "text-max-angle": 30,
         "text-transform": "uppercase",
-        "visibility": "visible"
+        "symbol-spacing": 350,
+        "text-font": ["Metropolis Regular", "Noto Sans Regular"],
+        "symbol-placement": "line",
+        "visibility": "visible",
+        "text-rotation-alignment": "map",
+        "text-pitch-alignment": "viewport",
+        "text-field": "{name:latin} {name:nonlatin}"
       },
       "paint": {
         "text-color": "rgb(152, 162, 179)",
@@ -583,16 +577,16 @@
         ["==", "class", "motorway"]
       ],
       "layout": {
-        "symbol-placement": "line",
-        "symbol-spacing": 350,
-        "text-field": "{ref}",
-        "text-font": ["Metropolis Light", "Noto Sans Regular"],
-        "text-pitch-alignment": "viewport",
-        "text-rotation-alignment": "viewport",
         "text-size": 10,
-        "visibility": "visible"
+        "symbol-spacing": 350,
+        "text-font": ["Metropolis Light", "Noto Sans Regular"],
+        "symbol-placement": "line",
+        "visibility": "visible",
+        "text-rotation-alignment": "viewport",
+        "text-pitch-alignment": "viewport",
+        "text-field": "{ref}"
       },
-      "paint": {"text-color": "hsl(0, 0%, 37%)", "text-translate": [0, 2]}
+      "paint": {"text-color": "rgb(152, 162, 179)", "text-translate": [0, 2]}
     },
     {
       "id": "boundary_state",
@@ -607,43 +601,26 @@
         "visibility": "visible"
       },
       "paint": {
+        "line-color": "rgb(83, 89, 102)",
+        "line-width": {"base": 1.3, "stops": [[3, 1], [22, 15]]},
         "line-blur": 0.4,
-        "line-color": "rgb(83, 89, 102)",
         "line-dasharray": [2, 2],
-        "line-opacity": 1,
-        "line-width": {"base": 1.3, "stops": [[3, 1], [22, 15]]}
+        "line-opacity": 1
       }
     },
     {
-      "id": "boundary_country_z0-4",
+      "id": "boundary_country",
       "type": "line",
       "metadata": {"mapbox:group": "a14c9607bc7954ba1df7205bf660433f"},
       "source": "openmaptiles",
       "source-layer": "boundary",
-      "maxzoom": 5,
-      "filter": ["all", ["==", "admin_level", 2], ["!has", "claimed_by"]],
-      "layout": {"line-cap": "round", "line-join": "round"},
-      "paint": {
-        "line-blur": {"base": 1, "stops": [[0, 0.4], [22, 4]]},
-        "line-color": "rgb(83, 89, 102)",
-        "line-opacity": 1,
-        "line-width": {"base": 1.1, "stops": [[3, 1], [22, 20]]}
-      }
-    },
-    {
-      "id": "boundary_country_z5-",
-      "type": "line",
-      "metadata": {"mapbox:group": "a14c9607bc7954ba1df7205bf660433f"},
-      "source": "openmaptiles",
-      "source-layer": "boundary",
-      "minzoom": 5,
       "filter": ["==", "admin_level", 2],
       "layout": {"line-cap": "round", "line-join": "round"},
       "paint": {
-        "line-blur": {"base": 1, "stops": [[0, 0.4], [22, 4]]},
         "line-color": "rgb(83, 89, 102)",
-        "line-opacity": 1,
-        "line-width": {"base": 1.1, "stops": [[3, 1], [22, 20]]}
+        "line-width": {"base": 1.1, "stops": [[3, 1], [22, 20]]},
+        "line-blur": {"base": 1, "stops": [[0, 0.4], [22, 4]]},
+        "line-opacity": 1
       }
     },
     {
@@ -659,14 +636,14 @@
         ["in", "class", "hamlet", "isolated_dwelling", "neighbourhood"]
       ],
       "layout": {
-        "text-anchor": "center",
-        "text-field": "{name:latin}\n{name:nonlatin}",
-        "text-font": ["Metropolis Regular", "Noto Sans Regular"],
-        "text-justify": "center",
-        "text-offset": [0.5, 0],
         "text-size": 10,
         "text-transform": "uppercase",
-        "visibility": "visible"
+        "text-font": ["Metropolis Regular", "Noto Sans Regular"],
+        "text-justify": "center",
+        "visibility": "visible",
+        "text-offset": [0.5, 0],
+        "text-anchor": "center",
+        "text-field": "{name:latin}\n{name:nonlatin}"
       },
       "paint": {
         "text-color": "rgb(152, 162, 179)",
@@ -684,14 +661,14 @@
       "maxzoom": 15,
       "filter": ["all", ["==", "$type", "Point"], ["==", "class", "suburb"]],
       "layout": {
-        "text-anchor": "center",
-        "text-field": "{name:latin}\n{name:nonlatin}",
-        "text-font": ["Metropolis Regular", "Noto Sans Regular"],
-        "text-justify": "center",
-        "text-offset": [0.5, 0],
         "text-size": 10,
         "text-transform": "uppercase",
-        "visibility": "visible"
+        "text-font": ["Metropolis Regular", "Noto Sans Regular"],
+        "text-justify": "center",
+        "visibility": "visible",
+        "text-offset": [0.5, 0],
+        "text-anchor": "center",
+        "text-field": "{name:latin}\n{name:nonlatin}"
       },
       "paint": {
         "text-color": "rgb(152, 162, 179)",
@@ -709,15 +686,15 @@
       "maxzoom": 14,
       "filter": ["all", ["==", "$type", "Point"], ["==", "class", "village"]],
       "layout": {
-        "icon-size": 0.4,
-        "text-anchor": "left",
-        "text-field": "{name:latin}\n{name:nonlatin}",
-        "text-font": ["Metropolis Regular", "Noto Sans Regular"],
-        "text-justify": "left",
-        "text-offset": [0.5, 0.2],
         "text-size": 10,
         "text-transform": "uppercase",
-        "visibility": "visible"
+        "text-font": ["Metropolis Regular", "Noto Sans Regular"],
+        "text-justify": "left",
+        "visibility": "visible",
+        "text-offset": [0.5, 0.2],
+        "icon-size": 0.4,
+        "text-anchor": "left",
+        "text-field": "{name:latin}\n{name:nonlatin}"
       },
       "paint": {
         "text-color": "rgb(152, 162, 179)",
@@ -736,16 +713,16 @@
       "maxzoom": 15,
       "filter": ["all", ["==", "$type", "Point"], ["==", "class", "town"]],
       "layout": {
+        "text-size": 10,
         "icon-image": {"base": 1, "stops": [[0, "circle-11"], [9, ""]]},
-        "icon-size": 0.4,
-        "text-anchor": {"base": 1, "stops": [[0, "left"], [8, "center"]]},
-        "text-field": "{name:latin}\n{name:nonlatin}",
+        "text-transform": "uppercase",
         "text-font": ["Metropolis Regular", "Noto Sans Regular"],
         "text-justify": "left",
+        "visibility": "visible",
         "text-offset": [0.5, 0.2],
-        "text-size": 10,
-        "text-transform": "uppercase",
-        "visibility": "visible"
+        "icon-size": 0.4,
+        "text-anchor": {"base": 1, "stops": [[0, "left"], [8, "center"]]},
+        "text-field": "{name:latin}\n{name:nonlatin}"
       },
       "paint": {
         "text-color": "rgb(152, 162, 179)",
@@ -769,16 +746,16 @@
         [">", "rank", 3]
       ],
       "layout": {
+        "text-size": 10,
         "icon-image": {"base": 1, "stops": [[0, "circle-11"], [9, ""]]},
-        "icon-size": 0.4,
-        "text-anchor": {"base": 1, "stops": [[0, "left"], [8, "center"]]},
-        "text-field": "{name:latin}\n{name:nonlatin}",
+        "text-transform": "uppercase",
         "text-font": ["Metropolis Regular", "Noto Sans Regular"],
         "text-justify": "left",
+        "visibility": "visible",
         "text-offset": [0.5, 0.2],
-        "text-size": 10,
-        "text-transform": "uppercase",
-        "visibility": "visible"
+        "icon-size": 0.4,
+        "text-anchor": {"base": 1, "stops": [[0, "left"], [8, "center"]]},
+        "text-field": "{name:latin}\n{name:nonlatin}"
       },
       "paint": {
         "text-color": "rgb(152, 162, 179)",
@@ -802,16 +779,16 @@
         ["==", "class", "city"]
       ],
       "layout": {
+        "text-size": 14,
         "icon-image": {"base": 1, "stops": [[0, "circle-11"], [9, ""]]},
-        "icon-size": 0.4,
-        "text-anchor": {"base": 1, "stops": [[0, "left"], [8, "center"]]},
-        "text-field": "{name:latin}\n{name:nonlatin}",
+        "text-transform": "uppercase",
         "text-font": ["Metropolis Regular", "Noto Sans Regular"],
         "text-justify": "left",
+        "visibility": "visible",
         "text-offset": [0.5, 0.2],
-        "text-size": 14,
-        "text-transform": "uppercase",
-        "visibility": "visible"
+        "icon-size": 0.4,
+        "text-anchor": {"base": 1, "stops": [[0, "left"], [8, "center"]]},
+        "text-field": "{name:latin}\n{name:nonlatin}"
       },
       "paint": {
         "text-color": "rgb(152, 162, 179)",
@@ -830,11 +807,11 @@
       "maxzoom": 12,
       "filter": ["all", ["==", "$type", "Point"], ["==", "class", "state"]],
       "layout": {
+        "visibility": "visible",
         "text-field": "{name:latin}\n{name:nonlatin}",
         "text-font": ["Metropolis Regular", "Noto Sans Regular"],
-        "text-size": 10,
         "text-transform": "uppercase",
-        "visibility": "visible"
+        "text-size": 10
       },
       "paint": {
         "text-color": "rgb(152, 162, 179)",
@@ -954,5 +931,6 @@
       }
     }
   ],
-  "id": "dark-matter"
+  "id": "dark-matter",
+  "maxzoom": 10
 }
