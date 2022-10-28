@@ -743,6 +743,7 @@
       "metadata": {"mapbox:group": "101da9f13b64a08fa4b6ac1168e89e5f"},
       "source": "openmaptiles",
       "source-layer": "place",
+      "minzoom": 6,
       "maxzoom": 14,
       "filter": [
         "all",
@@ -804,19 +805,54 @@
       }
     },
     {
-      "id": "place_state",
+      "id": "place_state-2",
       "type": "symbol",
       "metadata": {"mapbox:group": "101da9f13b64a08fa4b6ac1168e89e5f"},
       "source": "openmaptiles",
       "source-layer": "place",
+      "minzoom": 5,
       "maxzoom": 12,
       "filter": ["all", ["==", "$type", "Point"], ["==", "class", "state"]],
       "layout": {
         "visibility": "visible",
-        "text-field": "{name:latin}\n{name:nonlatin}",
+        "text-field": [
+          "coalesce",
+          ["get", "name:en"],
+          ["get", "name_en"],
+          ["get", "name:latin"]
+        ],
         "text-font": ["Metropolis Regular", "Noto Sans Regular"],
         "text-transform": "uppercase",
         "text-size": 10
+      },
+      "paint": {
+        "text-color": "rgb(152, 162, 179)",
+        "text-halo-color": "rgb(22, 26, 28)",
+        "text-halo-width": 1,
+        "text-halo-blur": 1
+      }
+    },
+    {
+      "id": "place_state-1",
+      "type": "symbol",
+      "metadata": {"mapbox:group": "101da9f13b64a08fa4b6ac1168e89e5f"},
+      "source": "openmaptiles",
+      "source-layer": "place",
+      "minzoom": 3,
+      "maxzoom": 12,
+      "filter": ["all", ["in", "class", "state"], ["<=", "rank", 3]],
+      "layout": {
+        "visibility": "visible",
+        "text-field": [
+          "coalesce",
+          ["get", "name:en"],
+          ["get", "name_en"],
+          ["get", "name:latin"]
+        ],
+        "text-font": ["Metropolis Regular", "Noto Sans Regular"],
+        "text-transform": "uppercase",
+        "text-size": {"base": 1.2, "stops": [[0, 6], [4, 9], [15, 14]]},
+        "text-max-width": 9
       },
       "paint": {
         "text-color": "rgb(152, 162, 179)",
