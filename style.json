@@ -20,7 +20,7 @@
   "sources": {
     "openmaptiles": {
       "type": "vector",
-      "url": "https://tiles.maps.elastic.co/data/v3.json"
+      "url": "https://tiles.maps.elastic.dev/data/v3.json"
     }
   },
   "sprite": "https://tiles.maps.elastic.co/styles/dark-matter/sprite",
@@ -594,7 +594,12 @@
       "metadata": {"mapbox:group": "a14c9607bc7954ba1df7205bf660433f"},
       "source": "openmaptiles",
       "source-layer": "boundary",
-      "filter": ["==", "admin_level", 4],
+      "filter": [
+        "all",
+        ["==", "admin_level", 4],
+        ["!=", "maritime", 1],
+        ["!=", "disputed", 1]
+      ],
       "layout": {
         "line-cap": "round",
         "line-join": "round",
@@ -614,7 +619,12 @@
       "metadata": {"mapbox:group": "a14c9607bc7954ba1df7205bf660433f"},
       "source": "openmaptiles",
       "source-layer": "boundary",
-      "filter": ["==", "admin_level", 2],
+      "filter": [
+        "all",
+        ["==", "admin_level", 2],
+        ["!=", "maritime", 1],
+        ["!=", "disputed", 1]
+      ],
       "layout": {"line-cap": "round", "line-join": "round"},
       "paint": {
         "line-color": "rgb(83, 89, 102)",
@@ -821,34 +831,6 @@
       }
     },
     {
-      "id": "place_country_other",
-      "type": "symbol",
-      "metadata": {"mapbox:group": "101da9f13b64a08fa4b6ac1168e89e5f"},
-      "source": "openmaptiles",
-      "source-layer": "place",
-      "minzoom": 1.1,
-      "maxzoom": 8,
-      "filter": [
-        "all",
-        ["==", "$type", "Point"],
-        ["==", "class", "country"],
-        ["!has", "iso_a2"]
-      ],
-      "layout": {
-        "visibility": "visible",
-        "text-field": "{name_en}",
-        "text-font": ["Metropolis Light Italic", "Noto Sans Italic"],
-        "text-transform": "uppercase",
-        "text-max-width": 6.25,
-        "text-size": {"base": 1, "stops": [[0, 9], [1, 11]]}
-      },
-      "paint": {
-        "text-halo-width": 1.4,
-        "text-halo-color": "rgb(22, 26, 28)",
-        "text-color": "rgb(152, 162, 179)"
-      }
-    },
-    {
       "id": "place_country_minor",
       "type": "symbol",
       "metadata": {"mapbox:group": "101da9f13b64a08fa4b6ac1168e89e5f"},
@@ -890,7 +872,7 @@
         ["==", "$type", "Point"],
         ["<=", "rank", 1],
         ["==", "class", "country"],
-        ["has", "iso_a2"]
+        ["any", ["has", "iso_a2"], ["==", "name_en", "Netherlands"]]
       ],
       "layout": {
         "visibility": "visible",
