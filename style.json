@@ -20,7 +20,7 @@
   "sources": {
     "openmaptiles": {
       "type": "vector",
-      "url": "https://tiles.maps.elastic.dev/data/v3.json"
+      "url": "https://tiles.maps.elastic.co/data/v3.json"
     }
   },
   "sprite": "https://tiles.maps.elastic.co/styles/dark-matter/sprite",
@@ -642,7 +642,6 @@
       ],
       "layout": {
         "text-size": 10,
-        "text-transform": "uppercase",
         "text-font": ["Metropolis Regular", "Noto Sans Regular"],
         "text-justify": "center",
         "visibility": "visible",
@@ -667,7 +666,6 @@
       "filter": ["all", ["==", "$type", "Point"], ["==", "class", "suburb"]],
       "layout": {
         "text-size": 10,
-        "text-transform": "uppercase",
         "text-font": ["Metropolis Regular", "Noto Sans Regular"],
         "text-justify": "center",
         "visibility": "visible",
@@ -692,7 +690,6 @@
       "filter": ["all", ["==", "$type", "Point"], ["==", "class", "village"]],
       "layout": {
         "text-size": 10,
-        "text-transform": "uppercase",
         "text-font": ["Metropolis Regular", "Noto Sans Regular"],
         "text-justify": "left",
         "visibility": "visible",
@@ -720,7 +717,6 @@
       "layout": {
         "text-size": 10,
         "icon-image": {"base": 1, "stops": [[0, "circle-11"], [9, ""]]},
-        "text-transform": "uppercase",
         "text-font": ["Metropolis Regular", "Noto Sans Regular"],
         "text-justify": "left",
         "visibility": "visible",
@@ -743,8 +739,8 @@
       "metadata": {"mapbox:group": "101da9f13b64a08fa4b6ac1168e89e5f"},
       "source": "openmaptiles",
       "source-layer": "place",
-      "minzoom": 6,
-      "maxzoom": 14,
+      "minzoom": 5,
+      "maxzoom": 24,
       "filter": [
         "all",
         ["==", "$type", "Point"],
@@ -752,14 +748,14 @@
         [">", "rank", 3]
       ],
       "layout": {
-        "text-size": 10,
-        "icon-image": {"base": 1, "stops": [[0, "circle-11"], [9, ""]]},
+        "text-size": {"base": 14, "stops": [[9, 10], [12, 14]]},
+        "icon-image": {"base": 1, "stops": [[0, "circle-11"], [7, ""]]},
         "text-font": ["Metropolis Regular", "Noto Sans Regular"],
         "text-justify": "left",
         "visibility": "visible",
         "text-offset": [0.5, 0.2],
         "icon-size": 0.4,
-        "text-anchor": {"base": 1, "stops": [[0, "left"], [8, "center"]]},
+        "text-anchor": {"base": 1, "stops": [[0, "left"], [6, "center"]]},
         "text-field": "{name:latin}\n{name:nonlatin}"
       },
       "paint": {
@@ -776,7 +772,7 @@
       "metadata": {"mapbox:group": "101da9f13b64a08fa4b6ac1168e89e5f"},
       "source": "openmaptiles",
       "source-layer": "place",
-      "maxzoom": 12,
+      "maxzoom": 24,
       "filter": [
         "all",
         ["==", "$type", "Point"],
@@ -784,14 +780,14 @@
         ["==", "class", "city"]
       ],
       "layout": {
-        "text-size": 14,
-        "icon-image": {"base": 1, "stops": [[0, "circle-11"], [9, ""]]},
+        "text-size": {"base": 14, "stops": [[9, 14], [12, 20]]},
+        "icon-image": {"base": 1, "stops": [[0, "circle-11"], [6, ""]]},
         "text-font": ["Metropolis Regular", "Noto Sans Regular"],
         "text-justify": "left",
         "visibility": "visible",
         "text-offset": [0.5, 0.2],
         "icon-size": 0.4,
-        "text-anchor": {"base": 1, "stops": [[0, "left"], [8, "center"]]},
+        "text-anchor": {"base": 1, "stops": [[0, "left"], [6, "center"]]},
         "text-field": "{name:latin}\n{name:nonlatin}"
       },
       "paint": {
@@ -872,7 +868,7 @@
         ["==", "$type", "Point"],
         ["==", "class", "country"],
         [">=", "rank", 2],
-        ["has", "iso_a2"]
+        ["any", ["has", "iso_a2"], ["==", "name_en", "Netherlands"]]
       ],
       "layout": {
         "visibility": "visible",
@@ -901,7 +897,7 @@
         ["==", "$type", "Point"],
         ["<=", "rank", 1],
         ["==", "class", "country"],
-        ["any", ["has", "iso_a2"], ["==", "name_en", "Netherlands"]]
+        ["has", "iso_a2"]
       ],
       "layout": {
         "visibility": "visible",
