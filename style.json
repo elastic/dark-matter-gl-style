@@ -68,7 +68,7 @@
       "layout": {"visibility": "visible"},
       "paint": {
         "fill-color": "rgb(22, 26, 28)",
-        "fill-opacity": {"base": 1, "stops": [[0, 1], [8, 0.5]]}
+        "fill-opacity": 1
       }
     },
     {
@@ -95,7 +95,7 @@
       "layout": {"visibility": "visible"},
       "paint": {
         "fill-color": "rgb(52, 55, 65)",
-        "fill-opacity": {"base": 0.3, "stops": [[8, 0], [10, 0.8], [13, 0.4]]},
+        "fill-opacity": 1,
         "fill-translate": [0, 0],
         "fill-pattern": "wood-pattern"
       }
